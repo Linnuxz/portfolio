@@ -23,7 +23,7 @@ const Navbar = ({
     const closeMenu = () => setIsMenuOpen(false);
 
     return (
-        <div className="flex items-center justify-between p-4 px-10 md:justify-around mb-[40px]">
+        <div className="mx-auto mb-[40px] flex max-w-[90%] items-center justify-between py-4">
             <h2 className="text-[23px] font-bold">
                 <Link to="/">{DataList.name[language]}</Link>
             </h2>
