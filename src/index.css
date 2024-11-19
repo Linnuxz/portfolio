@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'JetBrains Mono Regular';
+    src: url('./fonts/JetBrainsMono-Regular.ttf');
+}
+
+* {
+    font-family: 'JetBrains Mono Regular';
+    background-color: rgb(17, 17, 17);
+    color: white;
+}
+
