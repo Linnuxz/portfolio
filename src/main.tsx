@@ -1,18 +1,26 @@
-import { StrictMode } from 'react';
+import { StrictMode, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
-import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
+import {
+    createBrowserRouter,
+    Outlet,
+    RouterProvider,
+} from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import ProjectsPage from './pages/ProjectsPage';
 import NotFoundPage from './pages/NotFoundPage';
 import ProjectPage from './pages/ProjectPage';
 import Navbar from './components/Navbar';
+import { Language } from './constants';
+
 
 const Layout = () => {
+    const [language, setLanguage] = useState<Language>('english');
+
     return (
         <div>
-            <Navbar />
-            <Outlet />
+            <Navbar language={language} setLanguage={setLanguage} />
+            <Outlet context={{ language }} />
         </div>
     );
 };
@@ -47,11 +55,11 @@ const router = createBrowserRouter(
             v7_partialHydration: true,
             v7_skipActionErrorRevalidation: true,
         },
-    } as any
+    } as any,
 );
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
         <RouterProvider router={router} />
-    </StrictMode>
+    </StrictMode>,
 );
