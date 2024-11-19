@@ -14,12 +14,12 @@ const InfoAboutMe = () => {
                     </h2>
                     <div className="flex items-center gap-2 text-[#9CA3AF]">
                         <GrLocationPin size={18} color="#9CA3AF" />
-                        <p className="text-[17px] text-[#9CA3AF]">
+                        <p className="text-[17px] text-[#9CA3AF] text-nowrap">
                             {DataList.whereabouts[language]}
                         </p>
                     </div>
                 </div>
-                <ul className="flex gap-2">
+                <ul className="flex gap-2 flex-col md:flex-row">
                     {DataList.contactElements.map((elem) => (
                         <li
                             key={elem.name}
