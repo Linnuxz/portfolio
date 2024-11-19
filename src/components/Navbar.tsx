@@ -1,15 +1,21 @@
-import { Link } from "react-router-dom";
-import { NavbarList } from "../constants";
-import { useState } from "react";
-import { MdLanguage } from "react-icons/md";
-import { LuMenu } from "react-icons/lu";
+import { Link } from 'react-router-dom';
+import { DataList } from '../constants';
+import { useState } from 'react';
+import { MdLanguage } from 'react-icons/md';
+import { LuMenu } from 'react-icons/lu';
+import { Language } from '../constants';
 
-const Navbar = () => {
-    // Languages
-    type Language = "english" | "georgian";
-    const [language, setLanguage] = useState<Language>("english");
+const Navbar = ({
+    language,
+    setLanguage,
+}: {
+    language: Language;
+    setLanguage: (language: Language | ((prev: Language) => Language)) => void;
+}) => {
     const toggleLanguage = () =>
-        setLanguage((prev) => (prev == "english" ? "georgian" : "english"));
+        setLanguage((prev: Language) =>
+            prev == 'english' ? 'georgian' : 'english',
+        );
 
     // Menu
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
@@ -17,17 +23,14 @@ const Navbar = () => {
     const closeMenu = () => setIsMenuOpen(false);
 
     return (
-        <div className="flex items-center justify-between p-4 px-10 md:justify-around">
-            <h2 className="text-[20px]">
-                <Link to="/">{NavbarList.name[language]}</Link>
+        <div className="flex items-center justify-between p-4 px-10 md:justify-around mb-[40px]">
+            <h2 className="text-[23px] font-bold">
+                <Link to="/">{DataList.name[language]}</Link>
             </h2>
             <ul className="hidden gap-[50px] md:flex">
-                {NavbarList.navElements.map((navElement, index) => (
-                    <li key={index} className="text-[18px]">
-                        <Link
-                            to={navElement.path}
-                            className="transition-decoration duration-300 hover:underline"
-                        >
+                {DataList.navElements.map((navElement, index) => (
+                    <li key={index} className="text-[16px] font-normal">
+                        <Link to={navElement.path} className="hover:underline">
                             {navElement.labels[language]}
                         </Link>
                     </li>
@@ -41,7 +44,7 @@ const Navbar = () => {
                     </button>
                     {isMenuOpen && (
                         <ul className="absolute right-0 top-16 rounded-lg p-4 shadow-lg md:hidden">
-                            {NavbarList.navElements.map((navElement, index) => (
+                            {DataList.navElements.map((navElement, index) => (
                                 <li key={index} className="text-[18px]">
                                     <Link
                                         to={navElement.path}
